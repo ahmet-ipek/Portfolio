@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ahmet İpek — Control & Automation Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0f11;--bg2:#141517;--bg3:#1a1b1e;--bg4:#202124;
+  --border:#252628;--border2:#2e3032;--border3:#383a3d;
+  --text:#ececec;--text2:#909399;--text3:#52555a;--text4:#3a3d42;
+  --red:#e8392b;--red2:#c72d21;--red3:#ff5445;
+  --red-dim:rgba(232,57,43,0.09);--red-glow:rgba(232,57,43,0.15);
+  --amber:#c9971a;--amber-dim:rgba(201,151,26,0.10);
+  --green:#22c55e;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border3);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:50px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;
+  background:rgba(14,15,17,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-left{display:flex;align-items:center;gap:0}
+.nav-logo{
+  font-size:13px;font-weight:700;color:var(--text);
+  text-decoration:none;display:flex;align-items:center;gap:9px;
+  padding-right:24px;border-right:1px solid var(--border);
+}
+.nav-pulse{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(0.8)}}
+.nav-links{display:flex;list-style:none}
+.nav-links a{
+  color:var(--text3);text-decoration:none;font-size:12px;font-weight:500;
+  letter-spacing:.04em;
+  padding:0 16px;height:50px;display:flex;align-items:center;
+  border-right:1px solid var(--border);
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:var(--text);background:var(--bg2)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-cta{
+  background:var(--red);color:#fff;font-size:11px;font-weight:700;
+  padding:7px 16px;border-radius:2px;text-decoration:none;
+  letter-spacing:.06em;text-transform:uppercase;
+  transition:background .15s;
+}
+.nav-cta:hover{background:var(--red2)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1120px;margin:0 auto;padding:0 2rem}
+.wrap-wide{max-width:1280px;margin:0 auto;padding:0 2rem}
+section{padding:88px 0}
+
+/* ── SHARED LABEL ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;
+}
+.eyebrow-line{width:20px;height:1px;background:var(--red)}
+.eyebrow-amber{color:var(--amber)}
+.eyebrow-amber .eyebrow-line{background:var(--amber)}
+
+/* ── HERO ── */
+#hero{
+  padding-top:50px;min-height:100vh;
+  display:flex;flex-direction:column;
+  border-bottom:1px solid var(--border);
+}
+.hero-main{
+  display:grid;grid-template-columns:1fr 300px;
+  flex:1;
+  border-bottom:1px solid var(--border);
+}
+.hero-l{
+  padding:80px 56px 72px 2rem;
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:space-between;
+  max-width:840px;margin-left:auto;width:100%;
+}
+.hero-r{
+  padding:80px 2rem 72px 40px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.hero-status{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border3);
+  color:var(--text3);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border-radius:2px;
+  margin-bottom:2.5rem;width:fit-content;
+}
+.hero-name{
+  font-size:clamp(52px,6.5vw,88px);
+  font-weight:900;line-height:.9;
+  letter-spacing:-.03em;color:var(--text);
+  margin-bottom:1.5rem;
+}
+.hero-name em{color:var(--red);font-style:normal}
+.hero-headline{
+  font-size:clamp(14px,1.6vw,18px);font-weight:400;
+  color:var(--text2);line-height:1.5;
+  border-left:2px solid var(--red);padding-left:14px;
+  margin-bottom:1.75rem;
+}
+.hero-pitch{
+  font-size:13px;color:var(--text3);line-height:1.9;
+  max-width:520px;margin-bottom:2.5rem;
+}
+.hero-pitch strong{color:var(--text2);font-weight:600}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--red);color:#fff;font-size:12px;font-weight:700;
+  padding:10px 22px;border-radius:2px;text-decoration:none;
+  letter-spacing:.04em;text-transform:uppercase;
+  transition:background .15s;
+}
+.btn-primary:hover{background:var(--red2)}
+.btn-secondary{
+  background:transparent;color:var(--text2);font-size:12px;font-weight:500;
+  padding:9px 22px;border-radius:2px;text-decoration:none;
+  border:1px solid var(--border3);transition:border-color .15s,color .15s;
+}
+.btn-secondary:hover{border-color:var(--text3);color:var(--text)}
+
+/* hero stats */
+.hero-stats{display:flex;flex-direction:column}
+.hstat{padding:20px 0;border-bottom:1px solid var(--border)}
+.hstat:first-child{padding-top:0}
+.hstat:last-child{border-bottom:none;padding-bottom:0}
+.hstat-n{
+  font-size:34px;font-weight:900;letter-spacing:-.03em;
+  line-height:1;margin-bottom:4px;color:var(--text);
+}
+.hstat-n em{color:var(--red);font-style:normal}
+.hstat-l{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text4)}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 380px;gap:72px;align-items:start}
+.about-body p{color:var(--text2);font-size:13px;line-height:1.9;margin-bottom:1.1rem}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{color:var(--text);font-weight:600}
+.pull-quote{
+  border-left:2px solid var(--red);padding:14px 18px;
+  background:var(--red-dim);margin-top:1.5rem;border-radius:0 2px 2px 0;
+}
+.pull-quote p{font-size:12px;color:var(--text2);line-height:1.8;margin:0;font-style:italic}
+.info-card{
+  background:var(--bg3);border:1px solid var(--border);
+  padding:22px;margin-bottom:12px;
+}
+.info-card:last-child{margin-bottom:0}
+.info-card-ttl{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);margin-bottom:10px;
+}
+.info-list{list-style:none}
+.info-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:12px;color:var(--text2);
+  padding:6px 0;border-bottom:1px solid var(--border);line-height:1.55;
+}
+.info-list li:last-child{border-bottom:none}
+.info-list li::before{content:'→';color:var(--red);flex-shrink:0;font-size:10px;margin-top:2px}
+
+/* ── SKILLS ── */
+#skills{border-top:1px solid var(--border)}
+.sk-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border:1px solid var(--border);
+}
+.sk-card{padding:26px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sk-card:nth-child(2n){border-right:none}
+.sk-card:last-child{border-bottom:none;border-right:none;grid-column:1/-1}
+.sk-card:nth-last-child(2){border-bottom:none}
+.sk-eyebrow{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);margin-bottom:10px;
+}
+.sk-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  font-size:10px;font-weight:500;padding:3px 9px;border-radius:2px;
+  background:var(--bg3);border:1px solid var(--border2);
+  color:var(--text2);white-space:nowrap;letter-spacing:.02em;
+}
+.tag-r{background:var(--red-dim);border-color:rgba(232,57,43,.2);color:var(--red3)}
+.tag-a{background:var(--amber-dim);border-color:rgba(201,151,26,.2);color:var(--amber)}
+
+/* ── PROJECTS ── */
+#projects{border-top:1px solid var(--border)}
+.section-intro{
+  display:grid;grid-template-columns:auto 1fr;gap:56px;
+  padding-bottom:52px;border-bottom:1px solid var(--border);margin-bottom:52px;
+  align-items:end;
+}
+.proj-card{
+  border:1px solid var(--border);background:var(--bg2);
+  margin-bottom:20px;
+}
+.proj-card:last-child{margin-bottom:0}
+
+/* project header */
+.proj-hdr{
+  display:grid;grid-template-columns:1fr auto;
+  padding:24px 28px;border-bottom:1px solid var(--border);
+  align-items:start;gap:16px;
+}
+.proj-index{
+  font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:8px;
+}
+.proj-title{
+  font-size:20px;font-weight:800;color:var(--text);
+  letter-spacing:-.02em;margin-bottom:5px;
+}
+.proj-sub{
+  font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--red);
+}
+.badge{
+  font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:4px 11px;border-radius:2px;white-space:nowrap;
+}
+.badge-red{background:var(--red);color:#fff}
+.badge-amber{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(201,151,26,.25)}
+.badge-outline{background:transparent;color:var(--text3);border:1px solid var(--border3)}
+.badge-green{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+
+/* project body */
+.proj-body{display:grid;grid-template-columns:1fr 1fr}
+.proj-col{padding:24px 28px;border-right:1px solid var(--border)}
+.proj-col:last-child{border-right:none}
+.col-lbl{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:10px;
+}
+.proj-desc{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:14px}
+.proj-desc strong{color:var(--text);font-weight:600}
+.ul{list-style:none}
+.ul li{
+  font-size:12px;color:var(--text2);
+  padding:5px 0;display:flex;align-items:flex-start;
+  gap:8px;line-height:1.6;border-bottom:1px solid var(--border);
+}
+.ul li:last-child{border-bottom:none}
+.ul li::before{content:'—';color:var(--red);flex-shrink:0;font-size:10px;margin-top:1px}
+.ul li strong{color:var(--text);font-weight:600}
+
+/* metrics strip */
+.proj-metrics{
+  display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg3);
+}
+.metric{
+  flex:1;padding:14px 20px;border-right:1px solid var(--border);
+}
+.metric:last-child{border-right:none}
+.metric-val{
+  font-size:20px;font-weight:800;color:var(--text);
+  letter-spacing:-.02em;line-height:1;margin-bottom:4px;
+}
+.metric-val em{color:var(--red);font-style:normal}
+.metric-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text4)}
+
+/* media gallery */
+.proj-media{
+  border-top:1px solid var(--border);
+  padding:20px 28px;background:var(--bg);
+}
+.media-lbl{
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:14px;
+}
+.media-row{
+  display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;
+  scrollbar-width:thin;scrollbar-color:var(--border3) transparent;
+}
+.media-row::-webkit-scrollbar{height:3px}
+.media-row::-webkit-scrollbar-thumb{background:var(--border3);border-radius:2px}
+.media-item{
+  flex:0 0 auto;position:relative;
+  border:1px solid var(--border);border-radius:2px;
+  overflow:hidden;background:var(--bg3);
+}
+.media-item video,.media-item img{display:block;object-fit:cover}
+/* default sizes */
+.media-item video{height:320px;width:480px}
+.media-item img{height:320px;width:auto;max-width:560px}
+/* per-project */
+.p1-media .media-item video{height:500px;width:380px}
+.p1-media .media-item img{height:500px;width:auto;max-width:1000px;object-fit:fill}
+.p3-media .media-item video{height:400px;width:600px}
+.p3-media .media-item img{height:400px;width:auto;max-width:1400px;object-fit:fill}
+.media-item figcaption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:5px 10px;
+  background:rgba(14,15,17,.82);backdrop-filter:blur(4px);
+  font-size:9px;font-weight:600;letter-spacing:.06em;color:var(--text3);
+  opacity:0;transition:opacity .2s;
+}
+.media-item:hover figcaption{opacity:1}
+
+/* proj footer */
+.proj-foot{
+  padding:12px 28px;border-top:1px solid var(--border);
+  background:var(--bg3);display:flex;flex-wrap:wrap;gap:5px;
+}
+
+/* ── AWARDS ── */
+#awards{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.awards-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border)}
+.award-item{display:grid;grid-template-columns:280px 1fr;border-bottom:1px solid var(--border)}
+.award-item:last-child{border-bottom:none}
+.award-left{
+  padding:28px 24px;border-right:1px solid var(--border);
+  background:var(--bg3);display:flex;flex-direction:column;justify-content:space-between;
+}
+.award-icon{
+  width:44px;height:44px;border-radius:2px;
+  background:var(--amber-dim);border:1px solid rgba(201,151,26,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:16px;
+}
+.award-place{
+  font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:6px;
+}
+.award-competition{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.01em;margin-bottom:4px}
+.award-org{font-size:11px;color:var(--text3);font-weight:500}
+.award-right{padding:28px 32px;display:flex;flex-direction:column;gap:16px}
+.award-desc{font-size:12px;color:var(--text2);line-height:1.85}
+.award-desc strong{color:var(--text);font-weight:600}
+.award-points{list-style:none}
+.award-points li{
+  font-size:12px;color:var(--text2);padding:5px 0;
+  display:flex;align-items:flex-start;gap:8px;line-height:1.6;
+  border-bottom:1px solid var(--border);
+}
+.award-points li:last-child{border-bottom:none}
+.award-points li::before{content:'—';color:var(--amber);flex-shrink:0;font-size:10px;margin-top:1px}
+.award-media{border-top:1px solid var(--border);padding:18px 28px;background:var(--bg)}
+.award-media-item video{height:500px;width:auto;max-width:1000px;object-fit:cover}
+.award-media-item img{height:500px;width:auto;max-width:800px;object-fit:cover}
+
+/* ── EXPERIENCE ── */
+#experience{border-top:1px solid var(--border)}
+.exp-table{border:1px solid var(--border)}
+.exp-row{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--border)}
+.exp-row:last-child{border-bottom:none}
+.exp-left{padding:26px 22px;border-right:1px solid var(--border);background:var(--bg3)}
+.exp-co{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+.exp-period{font-size:10px;color:var(--text4);font-weight:500;margin-bottom:10px;letter-spacing:.04em}
+.ebadge{
+  display:inline-block;font-size:9px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:2px;
+}
+.eb-intern{background:var(--red-dim);color:var(--red3);border:1px solid rgba(232,57,43,.2)}
+.eb-founder{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(201,151,26,.2)}
+.exp-right{padding:26px 28px}
+.exp-role{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;letter-spacing:-.01em}
+.exp-summary{font-size:12px;color:var(--text2);line-height:1.75;margin-bottom:12px}
+.exp-summary strong{color:var(--text);font-weight:600}
+.exp-points{list-style:none}
+.exp-points li{
+  font-size:12px;color:var(--text2);padding:5px 0;
+  display:flex;align-items:flex-start;gap:10px;line-height:1.6;
+  border-bottom:1px solid var(--border);
+}
+.exp-points li:last-child{border-bottom:none}
+.exp-points li::before{content:'//';color:var(--red);flex-shrink:0;font-size:9px;font-weight:700;margin-top:3px}
+.exp-points li strong{color:var(--text);font-weight:600}
+
+/* ── EDUCATION ── */
+#education{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border)}
+.edu-card{padding:32px;border-right:1px solid var(--border)}
+.edu-card:last-child{border-right:none}
+.edu-type{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.edu-degree{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:4px}
+.edu-school{font-size:12px;color:var(--text2);margin-bottom:4px}
+.edu-period{font-size:11px;color:var(--text4);margin-bottom:18px;font-weight:500}
+.edu-sub{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text4);margin-bottom:8px}
+
+/* ── CONTACT ── */
+#contact{border-top:1px solid var(--border)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);margin-top:48px}
+.contact-l{padding:44px;border-right:1px solid var(--border)}
+.contact-r{padding:44px;background:var(--bg3)}
+.contact-h{
+  font-size:clamp(26px,4vw,46px);font-weight:900;
+  letter-spacing:-.03em;margin-bottom:12px;line-height:1.05;
+}
+.contact-h em{color:var(--red);font-style:normal}
+.contact-sub{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:2rem}
+.clinks{display:flex;flex-direction:column;border:1px solid var(--border)}
+.clink{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;text-decoration:none;color:var(--text);
+  border-bottom:1px solid var(--border);transition:background .15s;
+}
+.clink:last-child{border-bottom:none}
+.clink:hover{background:var(--bg2)}
+.clink-ic{
+  width:30px;height:30px;border-radius:2px;
+  background:var(--red-dim);border:1px solid rgba(232,57,43,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--red3);font-size:11px;font-weight:700;
+}
+.clink-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text4);margin-bottom:2px}
+.clink-val{font-size:12px;color:var(--text);font-weight:500}
+.terminal{
+  background:var(--bg);border:1px solid var(--border);
+  font-family:'Courier New',monospace;font-size:11px;
+}
+.t-bar{
+  background:var(--bg3);border-bottom:1px solid var(--border);
+  padding:9px 14px;display:flex;align-items:center;gap:6px;
+}
+.t-dot{width:9px;height:9px;border-radius:50%}
+.t-body{padding:16px 14px;line-height:2.1}
+.t-p{color:var(--red3);font-weight:700}
+.t-k{color:var(--text2)}
+.t-v{color:#4ade80}
+.t-m{color:var(--text4)}
+.t-cursor{
+  display:inline-block;width:6px;height:12px;
+  background:var(--red);vertical-align:middle;margin-left:2px;
+  animation:blink 1.1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:20px 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:var(--text4);
+}
+.footer-l{display:flex;align-items:center;gap:8px}
+.footer-dot{width:5px;height:5px;border-radius:50%;background:var(--red)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:980px){
+  .hero-main{grid-template-columns:1fr}
+  .hero-r{border-top:1px solid var(--border);padding:32px 2rem;flex-direction:row;flex-wrap:wrap;gap:1rem}
+  .hstat{border-bottom:none;border-right:1px solid var(--border);padding:0 20px 0 0;flex:1 1 100px}
+  .hstat:last-child{border-right:none}
+  .about-grid,.contact-grid,.edu-grid{grid-template-columns:1fr}
+  .proj-body,.section-intro{grid-template-columns:1fr}
+  .proj-col{border-right:none;border-bottom:1px solid var(--border)}
+  .proj-col:last-child{border-bottom:none}
+  .exp-row,.award-item{grid-template-columns:1fr}
+  .exp-left,.award-left{border-right:none;border-bottom:1px solid var(--border)}
+  .sk-grid{grid-template-columns:1fr}
+  .sk-card{border-right:none}
+  .edu-card{border-right:none;border-bottom:1px solid var(--border)}
+  .edu-card:last-child{border-bottom:none}
+  .proj-metrics{flex-wrap:wrap}
+  .metric{border-bottom:1px solid var(--border);min-width:50%}
+  .contact-l{border-right:none;border-bottom:1px solid var(--border)}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .hero-r{flex-direction:column}
+  .hstat{border-right:none;border-bottom:1px solid var(--border);padding:14px 0}
+  .hstat:last-child{border-bottom:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="nav-left">
+    <a href="#" class="nav-logo">
+      <span class="nav-pulse"></span>Ahmet İpek
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <a href="https://github.com/ahmet-ipek?tab=repositories" target="_blank" class="btn-secondary" style="font-size:11px;padding:6px 14px">GitHub ↗</a>
+    <a href="mailto:heisipek@gmail.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-main wrap-wide" style="max-width:1280px;margin:0 auto;width:100%">
+    <div class="hero-l">
+      <div>
+        <div class="hero-status">
+          <span class="nav-pulse" style="width:6px;height:6px"></span>
+          Open to opportunities
+        </div>
+        <h1 class="hero-name">Ahmet<br/><em>İpek</em></h1>
+        <p class="hero-headline">
+          Control &amp; Automation Engineer &nbsp;·&nbsp; Embedded Firmware &nbsp;·&nbsp; Model-Based Design
+        </p>
+        <p class="hero-pitch">
+          I’m an engineer who actually enjoys the messy intersection of pure math and physical hardware.
+        </p>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="https://www.linkedin.com/in/ahmet-ipek-a02287217/" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+        <a href="mailto:heisipek@gmail.com" class="btn-secondary">heisipek@gmail.com</a>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-n">4<em>+</em></div>
+          <div class="hstat-l">Major Projects</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">3</div>
+          <div class="hstat-l">Industry Internships</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n"><em>#</em>2</div>
+          <div class="hstat-l">MathWorks Competition</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n">M<em>.</em>Sc<em>.</em></div>
+          <div class="hstat-l">Currently Pursuing — YTU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow"><span class="eyebrow-line"></span>About</div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a Control and Automation Engineer pursuing my M.Sc. at Yıldız Technical University. My core interest is the <strong>sim-to-real pipeline</strong> — the engineering discipline of ensuring that a system modeled mathematically actually behaves correctly when running on physical silicon under real-world conditions.</p>
+        <p>My approach follows the <strong>V-model</strong> rigorously: I design and tune complex control logic in MATLAB/Simulink, validate through MIL and SIL testing, then implement the verified algorithms as production-grade bare-metal C on STM32 platforms with a strict layered architecture (BSP → Middleware → Application). I enforce MISRA-C standards and use logic analyzers for hardware-level debugging.</p>
+        <p>I interned at <strong>Baykar Technologies</strong> in the Control, Guidance &amp; Navigation team, working on EKF-based battery state estimation and observer-based fault detection for UAV systems. At <strong>ECEMTAG CONTROL TECHNOLOGIES</strong> I also developed transmission ECU <strong>Model Based</strong> algorithms — gear shift logic and unit tests — on a defense platform under NDA.</p>
+        <p>Outside of formal work, I co-founded <strong>RoboHexa</strong>, an independent project to rebuild the hexapod firmware from scratch as a professional-grade, MISRA-compliant codebase — transforming university prototyping code into something deployable.</p>
+        <div class="pull-quote">
+          <p>"A beautiful controller that can't run on hardware is just theory. Firmware without a proper model is just guessing. The job is closing the gap between the two — and doing it in a way that can be validated, not just hoped."</p>
+        </div>
+      </div>
+      <div>
+        <div class="info-card">
+          <div class="info-card-ttl">Current Status</div>
+          <ul class="info-list">
+            <li>M.Sc. Control &amp; Automation — YTU (Feb 2026–present)</li>
+            <li>RoboHexa — hexapod firmware refactor </li>
+            <li>Quadcopter FC — PCB design phase, PID tuning next</li>
+            <li>Open to full-time: embedded SW, control, MBD roles</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="info-card-ttl">What Sets Me Apart</div>
+          <ul class="info-list">
+            <li>System Level Thinking</li>
+            <li>Simulation-to-hardware validated control pipelines</li>
+            <li>Bare-metal programming from register level up</li>
+            <li>EKF & sensor fusion</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="info-card-ttl">Links</div>
+          <ul class="info-list">
+            <li><a href="https://github.com/ahmet-ipek?tab=repositories" target="_blank" style="color:var(--red3);text-decoration:none">github.com/ahmet-ipek ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/ahmet-ipek-a02287217/" target="_blank" style="color:var(--red3);text-decoration:none">linkedin.com/in/ahmet-ipek ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Technical Skills</div>
+    <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;margin-bottom:3rem">What I work with</h2>
+    <div class="sk-grid">
+      <div class="sk-card">
+        <div class="sk-eyebrow">Firmware &amp; Embedded</div>
+        <h4>Hardware</h4>
+        <div class="tags">
+          <span class="tag tag-r">STM32</span>
+          <span class="tag tag-r">Bare-Metal C</span>
+          <span class="tag tag-r">Register-Level Programming</span>
+          <span class="tag tag-r">SPI</span>
+          <span class="tag tag-r">I2C</span>
+          <span class="tag tag-r">UART</span>
+          <span class="tag tag-r">CAN (protocol)</span>
+          <span class="tag tag-r">Logic Analyzer</span>
+          <span class="tag tag-r">Real-Time Systems</span>
+        </div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-eyebrow">Control &amp; Estimation</div>
+        <h4>Algorithms</h4>
+        <div class="tags">
+          <span class="tag tag-r">Extended Kalman Filter</span>
+          <span class="tag tag-r">PID / Cascade Control</span>
+          <span class="tag tag-r">Observer-Based FDD</span>
+          <span class="tag tag-r">Sensor Fusion</span>
+          <span class="tag tag-r">6-DOF System Modeling</span>
+          <span class="tag tag-r">Forward/Inverse Kinematics</span>
+        </div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-eyebrow">Programming Languages</div>
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-eyebrow">Tools &amp; Standards</div>
+        <h4>Toolchain</h4>
+        <div class="tags">
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">STM32CubeIDE</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">MISRA-C</span>
+          <span class="tag">Layered Architecture (BSP/MW/App)</span>
+        </div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-eyebrow">Model-Based Development &amp; Testing</div>
+        <h4>MBD &amp; Verification</h4>
+        <div class="tags">
+          <span class="tag">MATLAB / Simulink</span>
+          <span class="tag">Simscape Multibody</span>
+          <span class="tag">Stateflow</span>
+          <span class="tag">Software-in-the-Loop (SIL)</span>
+          <span class="tag">Model-in-the-Loop (MIL)</span>
+          <span class="tag">V-Model Development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects">
+  <div class="wrap-wide">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Featured Work</div>
+    <div class="section-intro">
+      <h2 style="font-size:clamp(26px,4vw,52px);font-weight:900;letter-spacing:-.03em;line-height:1.0">Projects &amp;<br/>Case Studies</h2>
+      <p style="color:var(--text2);font-size:13px;line-height:1.9;align-self:end;max-width:420px"></p>
+    </div>
+
+    <!-- ── P1: HEXAPOD ── -->
+    <div class="proj-card">
+      <div class="proj-hdr">
+        <div>
+          <div class="proj-index">01 / 04</div>
+          <div class="proj-title">Hexapod Robot</div>
+          <div class="proj-sub">Sim2Real · 3 Gait Modes · SIL Pipeline · STM32 Bare-Metal</div>
+        </div>
+        <span class="badge badge-red">Graduation Project</span>
+      </div>
+
+      <div class="proj-metrics">
+        <div class="metric">
+          <div class="metric-val">3</div>
+          <div class="metric-lbl">Gait Modes (Tripod, Wave, Ripple)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">30<em>°</em></div>
+          <div class="metric-lbl">Max Slope Traversal</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">6</div>
+          <div class="metric-lbl">Bug Classes Caught by SIL</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">18</div>
+          <div class="metric-lbl">DOF, MG996R Actuators</div>
+        </div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-col">
+          <div class="col-lbl">Engineering Approach</div>
+          <p class="proj-desc">
+            The core engineering challenge was <strong>sim-to-real transfer</strong>: getting a 18-DOF system with compliant actuators (MG996R servos) to walk stably on uneven terrain without discovering algorithm failures on hardware. The solution was a rigorous SIL pipeline using Simulink C Caller blocks — the actual embedded C algorithms were executed inside the simulation model, meaning every bug caught was a real embedded bug, not a behavioral approximation.
+          </p>
+          <ul class="ul">
+            <li>Rigid-body physics model built in Simscape Multibody including MG996R actuator dynamics and MPU6050 IMU modeling</li>
+            <li>Custom Inverse Kinematics solver validated in simulation joint limits enforced analytically before hardware deployment</li>
+            <li>SIL via Simulink C Caller: embedded C code executed in-loop against physics model not behavioral approximation</li>
+            <li>Three gait modes implemented: tripod(fastest), wave(most stable), ripple(compromise) selectable via RF remote</li>
+            <li>Real-time roll/pitch estimation: complementary accel+gyro fusion → PID body-level stabilization loop</li>
+            <li>Microswitch tactile feedback on each foot — state machine adjusts step trajectory on unexpected ground contact</li>
+          </ul>
+        </div>
+        <div class="proj-col">
+          <div class="col-lbl">What SIL Actually Caught</div>
+          <ul class="ul">
+            <li><strong>Joint limit violations</strong> — kinematics computed angles outside servo physical range; would have stripped gears on hardware</li>
+            <li><strong>Gait timing / coordination failures</strong> — phase offsets between legs caused simulated body rotation before physical testing</li>
+            <li><strong>Coordinate frame sign errors</strong> — axis inversions in the IK solution; silent on hardware until the leg moves the wrong direction</li>
+            <li><strong>Unstable PID parameters</strong> — control gains that caused oscillation in the physics model were corrected before deployment</li>
+            <li><strong>Sensor noise sensitivity</strong> — roll/pitch estimate degradation under high-frequency vibration modeled and filtered in simulation</li>
+          </ul>
+          <div class="col-lbl" style="margin-top:16px">Verified Outcome</div>
+          <ul class="ul">
+            <li>Walks continuously on flat terrain and uneven surfaces up to <strong>30° slopes</strong></li>
+            <li>Step height configurable via RF remote — adapts to terrain in real time</li>
+            <li>Zero hardware failures attributed to algorithm errors post-SIL validation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p1-media">
+        <div class="media-lbl">Media — Videos &amp; Photos</div>
+        <div class="media-row">
+          <figure class="media-item">
+            <video autoplay loop muted playsinline>
+              <source src="videos/sim2reality2.mp4" type="video/mp4">
+            </video>
+            <figcaption>Sim2Real Walking Demo</figcaption>
+          </figure>
+          <figure class="media-item">
+            <img src="videos/Hexamodel.png" alt="Simulink Model">
+            <figcaption>Simulink Control Model</figcaption>
+          </figure>
+          <figure class="media-item">
+            <img src="videos/Hexamodel1.png" alt="Simscape Physical Model">
+            <figcaption>Simscape Multibody Physics Model</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <span class="tag tag-r">Simscape Multibody</span>
+        <span class="tag tag-r">SIL (Simulink C Caller)</span>
+        <span class="tag tag-r">Inverse Kinematics</span>
+        <span class="tag tag-r">Sensor Fusion</span>
+        <span class="tag">C (Bare-Metal)</span>
+        <span class="tag">STM32</span>
+        <span class="tag">MPU6050</span>
+        <span class="tag">PID</span>
+        <span class="tag">SPI / I2C</span>
+        <span class="tag">MATLAB/Simulink</span>
+      </div>
+    </div>
+
+    <!-- ── P2: QUADCOPTER FC ── -->
+    <div class="proj-card">
+      <div class="proj-hdr">
+        <div>
+          <div class="proj-index">02 / 04</div>
+          <div class="proj-title">Quadcopter Flight Controller</div>
+          <div class="proj-sub">6-State ESEKF · 1 kHz Bare-Metal · Quaternion AHRS · Cascade PID</div>
+        </div>
+        <span class="badge badge-green">Bench-Validated · PCB Phase</span>
+      </div>
+
+      <div class="proj-metrics">
+        <div class="metric">
+          <div class="metric-val">1<em>kHz</em></div>
+          <div class="metric-lbl">Filter + Control Loop Rate</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">&lt;1<em>°</em></div>
+          <div class="metric-lbl">Static Attitude Error (target)</div>
+        </div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-col">
+          <div class="col-lbl">Architecture &amp; Design Decisions</div>
+          <p class="proj-desc">
+            A complete flight controller in <strong>hand-written bare-metal C on STM32F4</strong> — no HAL abstraction for the IMU interface, no RTOS, no library flight stack. Every layer was designed from first principles: register-level SPI driver, 6-State ESEKF, and a cascaded PID attitude controller. The architecture uses strict layer separation: BSP → Middleware (EKF math) → Application (control loops).
+          </p>
+          <ul class="ul">
+            <li>
+              <strong>ESEKF State Vectors</strong> — Nominal: [q_w, q_x, q_y, q_z, b_gx, b_gy, b_gz]; Error-state (6-dim): [δθ_x, δθ_y, δθ_z, δb_gx, δb_gy, δb_gz]. Error-state formulation chosen to avoid quaternion covariance singularities and reduce linearization error at high angular rates
+            </li>
+            <li>
+              <strong>1 kHz loop</strong> driven by ICM-20948 data_ready interrupt SPI read 
+            </li>
+            <li>
+              <strong>Online gyro bias estimation</strong> — b_g states updated continuously via process noise Q matrix; filter accuracy improves as sensor thermalizes during operation
+            </li>
+            <li>
+              Cascaded control: <strong>1 kHz inner angular-rate loop</strong> + <strong>250 Hz outer attitude angle loop</strong>
+            </li>
+          </ul>
+        </div>
+        <div class="proj-col">
+          <div class="col-lbl">Technical Highlights</div>
+          <ul class="ul">
+            <li>
+              Implemented an ICM-20948 driver over SPI, including register configuration, data acquisition, and transaction management.
+            </li>
+            <li>
+              <strong>Hard &amp; soft-iron magnetometer calibration</strong> completed; cross-axis interference eliminated by ensuring normalized accel/mag vectors before the ESEKF update step
+            </li>
+          </ul>
+          <div class="col-lbl" style="margin-top:16px">Current Status &amp; Next Steps</div>
+          <ul class="ul">
+            <li>9-axis ESEKF attitude estimation bench-validated; stable quaternion output confirmed across roll, pitch, yaw axes</li>
+            <li>Closed-loop: EKF angles feeding PID controllers driving motors — tested statically on bench</li>
+            <li>Next: custom PCB designed and printed → outdoor PID tuning for stable flight</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="proj-media">
+        <div class="media-lbl">Media — Videos &amp; Photos</div>
+        <div class="media-row">
+          <!-- add media here when available -->
+        </div>
+      </div>
+      <div class="proj-foot">
+        <span class="tag tag-r">Error-State EKF (ESEKF)</span>
+        <span class="tag tag-r">Quaternion AHRS</span>
+        <span class="tag tag-r">Sensor Fusion</span>
+        <span class="tag">C (Bare-Metal)</span>
+        <span class="tag">STM32F4</span>
+        <span class="tag">ICM-20948</span>
+        <span class="tag">SPI (Register-Level)</span>
+        <span class="tag">Cascade PID</span>
+        <span class="tag">Layered Architecture</span>
+      </div>
+    </div>
+
+    <!-- ── P3: QUADCOPTER FDD ── -->
+    <div class="proj-card">
+      <div class="proj-hdr">
+        <div>
+          <div class="proj-index">03 / 04</div>
+          <div class="proj-title">Quadcopter Modeling, Control &amp; Fault Detection</div>
+          <div class="proj-sub">6-DOF Simulation · Observer-Based FDD · 100% Isolation Accuracy</div>
+        </div>
+        <span class="badge badge-outline">Baykar Technologies</span>
+      </div>
+
+      <div class="proj-metrics">
+        <div class="metric">
+          <div class="metric-val">100<em>%</em></div>
+          <div class="metric-lbl">Fault Isolation Accuracy</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">4</div>
+          <div class="metric-lbl">Motors Independently Tested</div>
+        </div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-col">
+          <div class="col-lbl">System Architecture</div>
+          <p class="proj-desc">
+            A high-fidelity 6-DoF quadcopter simulation with a <strong>fault detection system</strong>. motor failures detected and classified using only model-based residuals. Developed within Baykar's CNS team.
+          </p>
+          <ul class="ul">
+            <li>Full 6-DOF model: cascade control from position setpoint → attitude → angular rate → individual motor commands</li>
+            <li><strong>Observer-based FDD</strong>: model predicts expected system output; deviation between prediction and simulation output generates residuals</li>
+            <li>Residual projection + isolation logic maps residual signatures to specific motors. uses the characteristic signature matrix (M1: [+,–], M2: [–,–], M3: [–,+], M4: [+,+])</li>
+            <li>Fault classification: partial thrust loss (propeller damage, ESC degradation, motor wear) — primary fault mode by design</li>
+          </ul>
+        </div>
+        <div class="proj-col">
+          <div class="col-lbl">Validation &amp; Results</div>
+          <ul class="ul">
+            <li><strong>Detection latency 100–300 ms</strong>: intentional trade-off — faster threshold = noisier; current setting optimized for reliability over speed</li>
+            <li><strong>False positive rate &lt;5%</strong> under gyro-noise simulation and step torque disturbances (wind gust injection)</li>
+            <li><strong>100% correct motor identification</strong> across all four motors under partial under-thrust faults tested independently</li>
+            <li>Observer remained stable under all tested conditions — no divergence with tuned gains</li>
+            <li>Clear residual separation verified: healthy-state residual ≈ 0; faulty-state residual deviates significantly above threshold</li>
+          </ul>
+          <div class="col-lbl" style="margin-top:16px">Design Scope &amp; Honesty</div>
+          <ul class="ul">
+            <li>Simulation study — not deployed to physical hardware</li>
+            <li>Over-thrust faults excluded by design (symmetry ambiguity in residual signatures)</li>
+            <li>Sensor faults not in scope for this implementation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p3-media">
+        <div class="media-lbl">Media — Videos &amp; Photos</div>
+        <div class="media-row">
+          <figure class="media-item">
+            <video autoplay loop muted playsinline>
+              <source src="videos/trajectory.mp4" type="video/mp4">
+            </video>
+            <figcaption>Trajectory Simulation</figcaption>
+          </figure>
+          <figure class="media-item">
+            <img src="videos/quadcopterModel.png" alt="Simulink FDD Model">
+            <figcaption>Simulink Model Architecture</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <span class="tag tag-r">Observer-Based FDD</span>
+        <span class="tag tag-r">Residual Generation</span>
+        <span class="tag tag-r">Fault Isolation</span>
+        <span class="tag">MATLAB/Simulink</span>
+        <span class="tag">6-DOF Dynamics</span>
+        <span class="tag">Cascade Control</span>
+        <span class="tag">Position Control</span>
+      </div>
+    </div>
+
+    <!-- ── P4: BATTERY BMS ── -->
+    <div class="proj-card">
+      <div class="proj-hdr">
+        <div>
+          <div class="proj-index">04 / 04</div>
+          <div class="proj-title">Battery Modeling &amp; SoC/SoH Estimation</div>
+          <div class="proj-sub">1RC Thevenin Model · EKF · ~1.2% RMS SoC Error · 0–40°C Range</div>
+        </div>
+        <span class="badge badge-outline">Baykar Technologies</span>
+      </div>
+
+      <div class="proj-metrics">
+        <div class="metric">
+          <div class="metric-val">~1.2<em>%</em></div>
+          <div class="metric-lbl">SoC RMS Estimation Error</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">&lt;5<em>%</em></div>
+          <div class="metric-lbl">Worst-Case (High Transient)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">0–40<em>°C</em></div>
+          <div class="metric-lbl">Temperature Range Tested</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">0–10<em>C</em></div>
+          <div class="metric-lbl">C-Rate Range Tested</div>
+        </div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-col">
+          <div class="col-lbl">Model Architecture</div>
+          <p class="proj-desc">
+            A cell-level LiPo battery model built around a <strong>first-order Thevenin (1RC) equivalent circuit</strong> — chosen for real-time suitability without sacrificing the dominant dynamics. The model goes beyond basic OCV by including <strong>hysteresis-aware OCV</strong> (critical accuracy improvement at mid-SoC), temperature-dependent resistance, thermal coupling between cells, and a capacity degradation model.
+          </p>
+          <ul class="ul">
+            <li><strong>1RC Thevenin</strong>: OCV(SoC,T) + series resistance R0 + one RC branch for transient response — computationally lean for EKF state propagation</li>
+            <li><strong>Hysteresis-aware OCV</strong>: standard OCV curves are flat at mid-SoC — hysteresis model significantly improves estimation accuracy in this critical region</li>
+            <li><strong>2D lookup tables</strong> for temperature/SoC dependencies — EKF operates with temperature-corrected parameters at every timestep</li>
+            <li>Per-cell SoC tracking with <strong>cell imbalance detection</strong> — individual cell degradation visible, not just pack-level voltage</li>
+          </ul>
+        </div>
+        <div class="proj-col">
+          <div class="col-lbl">EKF Design &amp; Validation</div>
+          <ul class="ul">
+            <li>
+              <strong>EKF corrects coulomb counting drift</strong> using voltage feedback — ground-truth SoC computed by numerical integration of current (reference coulomb counter); EKF SoC compared against this reference to measure estimation error
+            </li>
+            <li><strong>~1.2% RMS error</strong> achieved under constant-current discharge profiles (2.2A baseline); worst-case ~4–5% during high-current transients (&gt;10C) due to flat OCV region dynamics</li>
+            <li>Validated across <strong>0–40°C</strong> with temperature-corrected resistance and capacity parameters</li>
+            <li>Tested at C-rates from near-zero (hover/cruise) to ~10C (aggressive maneuver spikes)</li>
+          </ul>
+          <div class="col-lbl" style="margin-top:16px">SoH &amp; Fault Detection</div>
+          <ul class="ul">
+            <li>SoH modeled via Arrhenius + current-throughput degradation model (~±5–10% qualitative accuracy) — online EKF SoH estimation not implemented; acknowledged as a future extension</li>
+            <li>Fault detection algorithms for cell voltage imbalance and voltage sensor drift implemented and validated</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="proj-media">
+        <div class="media-lbl">Media — Videos &amp; Photos</div>
+        <div class="media-row">
+          <!-- add media here -->
+        </div>
+      </div>
+      <div class="proj-foot">
+        <span class="tag tag-r">Extended Kalman Filter</span>
+        <span class="tag tag-r">SoC / SoH Estimation</span>
+        <span class="tag tag-r">Hysteresis OCV</span>
+        <span class="tag">MATLAB/Simulink</span>
+        <span class="tag">1RC Thevenin Model</span>
+        <span class="tag">Thermal Modeling</span>
+        <span class="tag">Cell Imbalance Detection</span>
+        <span class="tag">2D Lookup Tables</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ AWARDS ═══════════ -->
+<section id="awards">
+  <div class="wrap">
+    <div class="eyebrow eyebrow-amber"><span class="eyebrow-line"></span>Awards &amp; Recognition</div>
+    <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;margin-bottom:3rem">Competition Results</h2>
+    <div class="awards-list">
+      <div class="award-item">
+        <div class="award-left">
+          <div>
+            <div class="award-icon">🏆</div>
+            <div class="award-place">2nd Place — National Finals</div>
+            <div class="award-competition">MathWorks Minidrone Competition</div>
+            <div class="award-org">MathWorks &nbsp;·&nbsp; 2024 &nbsp;·&nbsp; 25 Teams</div>
+          </div>
+          <div class="tags" style="margin-top:16px">
+            <span class="tag tag-a">2nd / 25 Teams</span>
+            <span class="tag">MATLAB/Simulink</span>
+            <span class="tag">Stateflow</span>
+          </div>
+        </div>
+        <div class="award-right">
+          <p class="award-desc">
+            Placed <strong>2nd out of 25 national teams</strong> in the MathWorks Minidrone Competition. The challenge: design a fully autonomous GNC (Guidance, Navigation &amp; Control) stack for a 6-DOF quadcopter that follows a line track using only onboard camera data.
+            <br/><br/>
+            My specific responsibility was the <strong>autonomous navigation and precision landing system</strong> using Stateflow. A teammate handled the image processing pipeline (vision-based line detection); I designed the state machine that consumed that output and commanded the drone through its full mission.
+          </p>
+          <ul class="award-points">
+            <li>
+              <strong>Stateflow state machine</strong> managed full mission logic: takeoff → climb → line acquisition → path-following → approach → precision landing. Each state had defined entry/exit conditions and guard logic to handle sensor noise gracefully
+            </li>
+            <li>
+              Entire control architecture validated in simulation first; verified C-code deployed to physical hardware.
+            </li>
+            <li>
+              Placed <strong>2nd in the national finals</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- award media below the grid -->
+    <div class="award-media" style="border:1px solid var(--border);border-top:none">
+      <div class="media-lbl">Media — Videos &amp; Photos</div>
+      <div class="media-row">
+        <figure class="media-item award-media-item">
+          <video autoplay loop muted playsinline>
+            <source src="videos/drone.mp4" type="video/mp4">
+          </video>
+          <figcaption>Autonomous Navigation — Simulation</figcaption>
+        </figure>
+        <figure class="media-item award-media-item">
+          <img src="videos/minidrone.jpg" alt="Minidrone hardware">
+          <figcaption>Physical Hardware — Competition Run</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Work History</div>
+    <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;margin-bottom:3rem">Professional Experience</h2>
+    <div class="exp-table">
+
+      <div class="exp-row">
+        <div class="exp-left">
+          <div class="exp-co">RoboHexa</div>
+          <div class="exp-period">2025 – Present</div>
+          <span class="ebadge eb-founder">Co-Founder</span>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Embedded Software Engineer &amp; Co-Founder</div>
+          <p class="exp-summary">
+            Independent initiative to rebuild the hexapod firmware from the ground up as a <strong>production-grade, MISRA-C compliant codebase</strong> — transforming university rapid-prototyping code into a deployable, maintainable firmware architecture. The physical hexapod platform originated as a collaborative graduation thesis; the firmware refactor is an entirely independent professional undertaking.
+          </p>
+          <ul class="exp-points">
+            <li><strong>Layered Firmware Architecture</strong> (BSP → Middleware → Application) on STM32F4 — hardware-specific drivers fully decoupled from control logic; each layer independently testable</li>
+            <li><strong>MISRA-C compliance</strong> enforced throughout — coding standards consistent with automotive and aerospace safety-critical development practices</li>
+            <li><strong>V-model development cycle</strong>: complex control logic (body-orientation PID, IK matrices) designed and tuned in MATLAB/Simulink, SIL-validated, then integrated with the layered C architecture</li>
+            <li>Public GitHub repository — architecture, documentation, and design decisions openly available</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-left">
+          <div class="exp-co">Baykar Technologies</div>
+          <div class="exp-period">2025 · 2 months</div>
+          <span class="ebadge eb-intern">Internship</span>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Control, Guidance &amp; Navigation — Engineering Intern</div>
+          <p class="exp-summary">
+            Worked within Baykar's CNS team. Work was entirely simulation-based in <strong>MATLAB/Simulink</strong>, focused on aerospace-grade state estimation and fault-tolerant control.
+          </p>
+          <ul class="exp-points">
+            <li><strong>EKF-based SoC/SoH estimation</strong> for Li-Ion Battery Management Systems — 2D lookup tables for temperature and SoC dependencies; ~1.2% RMS estimation error under standard profiles</li>
+            <li><strong>6-DoF quadcopter simulation</strong> with cascade control architecture from position setpoint to individual motor commands</li>
+            <li><strong>Observer-based FDD</strong>: model-based residual generation for actuator fault detection — 100% motor isolation accuracy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-left">
+          <div class="exp-co">ECEMTAG Control Technologies</div>
+          <div class="exp-period">2024 · 2 months</div>
+          <span class="ebadge eb-intern">Internship</span>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Model-Based Control Software Engineer</div>
+          <p class="exp-summary">
+            Developed <strong>transmission ECU control algorithms</strong> for a defense platform (NDA-restricted) using MATLAB/Simulink. Worked within a structured V-model development process on an existing model architecture.
+          </p>
+          <ul class="exp-points">
+            <li>Designed <strong>gear shift logic</strong> within an existing Simulink ECU model — requirements-driven development</li>
+            <li>Executed <strong>unit tests</strong> for developed algorithms MIL testing to verify algorithm behavior against system requirements</li>
+            <li>First professional exposure to a production-scale MBD codebase with multiple contributors and formal requirements traceability</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-left">
+          <div class="exp-co">Arge Robotik</div>
+          <div class="exp-period">2023</div>
+          <span class="ebadge eb-intern">Internship</span>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Software Developer</div>
+          <p class="exp-summary">Industrial automation — motion control and operator interface development.</p>
+          <ul class="exp-points">
+            <li>Developed automated <strong>motion control and HMI system</strong> using Siemens TIA Portal for industrial hardware</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Education</div>
+    <h2 style="font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.03em;margin-bottom:3rem">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-type">M.Sc. — In Progress</div>
+        <div class="edu-degree">Control &amp; Automation Engineering</div>
+        <div class="edu-school">Yıldız Technical University, Istanbul</div>
+        <div class="edu-period">February 2026 – Present</div>
+        <div class="edu-sub">Focus</div>
+        <div class="tags">
+          <span class="tag">Advanced Control Theory</span>
+          <span class="tag">System Modeling &amp; Verification</span>
+          <span class="tag">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-type">B.Eng. — Completed</div>
+        <div class="edu-degree">Control &amp; Automation Engineering</div>
+        <div class="edu-school">Yıldız Technical University, Istanbul</div>
+        <div class="edu-period">September 2020 – January 2025</div>
+        <div class="edu-sub">Relevant Coursework</div>
+        <div class="tags">
+          <span class="tag">Control Systems Design</span>
+          <span class="tag">System Dynamics &amp; Modeling</span>
+          <span class="tag">Real-Time Control Systems</span>
+          <span class="tag">Multivariable Control</span>
+          <span class="tag">Robust Control</span>
+          <span class="tag">Microcontrollers &amp; Embedded</span>
+          <span class="tag">Robotic Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Contact</div>
+    <div class="contact-grid">
+      <div class="contact-l">
+        <h2 class="contact-h">Let's build<br/><em>something</em></h2>
+        <p class="contact-sub">
+          Open to full-time roles in embedded software, control systems engineering, or model-based design.
+        </p>
+        <div class="clinks">
+          <a href="mailto:heisipek@gmail.com" class="clink">
+            <div class="clink-ic">@</div>
+            <div><div class="clink-lbl">Email</div><div class="clink-val">heisipek@gmail.com</div></div>
+          </a>
+          <a href="tel:+905375876470" class="clink">
+            <div class="clink-ic">#</div>
+            <div><div class="clink-lbl">Phone</div><div class="clink-val">+90 537 587 64 70</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/ahmet-ipek-a02287217/" target="_blank" class="clink">
+            <div class="clink-ic" style="font-size:10px">in</div>
+            <div><div class="clink-lbl">LinkedIn</div><div class="clink-val">linkedin.com/in/ahmet-ipek</div></div>
+          </a>
+          <a href="https://github.com/ahmet-ipek?tab=repositories" target="_blank" class="clink">
+            <div class="clink-ic" style="font-size:10px">&lt;/&gt;</div>
+            <div><div class="clink-lbl">GitHub</div><div class="clink-val">github.com/ahmet-ipek</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-r">
+
+        <div style="margin-top:14px;background:var(--bg);border:1px solid var(--border);padding:16px">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text4);margin-bottom:10px">Languages</div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text)">Turkish</span><span style="color:var(--text4);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Native</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid var(--border)">
+              <span style="color:var(--text)">Arabic</span><span style="color:var(--text4);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Native</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0">
+              <span style="color:var(--text)">English</span><span style="color:var(--text4);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Professional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-l">
+    <span class="footer-dot"></span>
+    <span>Ahmet İpek — Control &amp; Automation Engineer</span>
+  </div>
+  <span>Istanbul, Turkey &nbsp;·&nbsp; heisipek@gmail.com &nbsp;·&nbsp; </span>
+</footer>
+
+</body>
+</html>
